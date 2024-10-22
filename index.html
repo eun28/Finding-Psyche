@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Finding Psyche</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Upright:wght@300;400;500;600;700&family=Jacquarda+Bastarda+9&family=Mountains+of+Christmas:wght@400;700&family=Quintessential&display=swap"
+      rel="stylesheet"
+    />
+
+    <style type="text/css">
+      @font-face {
+        font-family: "SungDongMyungjo";
+        font-style: normal;
+        font-weight: 400;
+        src: url("//fastly.jsdelivr.net/korean-webfonts/1/orgs/govs/sdgu/SungDongMyungjo/SungDongMyungjoR.woff2")
+            format("woff2"),
+          url("//fastly.jsdelivr.net/korean-webfonts/1/orgs/govs/sdgu/SungDongMyungjo/SungDongMyungjoR.woff")
+            format("woff");
+      }
+      body,
+      p {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "SungDongMyungjo", serif;
+        transition: background-color 0.5s;
+        letter-spacing: -0.05em;
+        overflow: hidden;
+      }
+
+      body {
+        background: black;
+        overflow: hidden;
+        cursor: none;
+      }
+
+      .erosText {
+        position: absolute;
+        color: white;
+        font-size: 1.2rem;
+        z-index: 101;
+        display: none;
+        pointer-events: none;
+      }
+
+      .cursor_item {
+        pointer-events: none;
+        position: absolute;
+        z-index: 100;
+      }
+
+      .video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      #heVideo {
+        position: absolute;
+        width: 50%;
+        height: 50%;
+        top: 25%;
+        left: 25%;
+        display: none;
+      }
+
+      .one {
+        color: white;
+        font-size: 1.2rem;
+        position: absolute;
+        z-index: 1;
+        top: 50%;
+        line-height: 1.3;
+        text-shadow: 0px 0px 10px #ffffff;
+      }
+
+      .two {
+        color: white;
+        font-size: 4rem;
+        position: absolute;
+        z-index: -1;
+        top: 0px;
+        left: 30px;
+        padding-right: 20px;
+        word-break: break-all;
+        line-height: 1.5;
+        display: none;
+        padding-top: 20px;
+      }
+
+      #errosMessage {
+        color: white;
+        font-size: 1.2rem;
+        position: absolute;
+        z-index: 1;
+        line-height: 1.5;
+        display: none;
+        top: 50%;
+      }
+
+      .candle {
+        position: absolute;
+        width: 70%;
+        height: 70%;
+      }
+
+      .three {
+        font-family: "Mountains of Christmas", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 14rem;
+        color: white;
+        letter-spacing: -2px;
+        text-align: center;
+        text-shadow: 0px 0px 20px #83d0ff;
+        z-index: 1;
+        padding-top: 20px;
+      }
+
+      .new-screen {
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        display: none; 
+      }
+
+      .background-img {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.5);
+
+        z-index: 2;
+        clip-path: circle(50px at center); 
+        background-image: url("zzz.png");
+        background-size: cover;
+      }
+
+      .hand-img {
+        position: absolute;
+        bottom: 0px;
+        right: 10px;
+        width: 700px;
+        z-index: 3;
+      }
+    </style>
+    <a href="https://www.cursors-4u.com/cursor/2011/11/29/knife-7.html" target="_blank" title="Knife"><img src="https://cur.cursors-4u.net/cursor.png" border="0" alt="Knife" style="position:absolute; top: 0px; right: 0px;" /></a>
+  </head>
+  <body>
+    <p id="message" class="three">Finding Psyche</p>
+    <video id="myVideo" class="video" autoplay muted loop>
+      <source src="off.mp4" type="video/mp4" />
+    </video>
+
+    <div id="newScreen" class="new-screen" style="display: none">
+      <div class="overlay" id="overlay"></div>
+      <div class="background-img"></div>
+      <img src="hand.png" alt="Hand" class="hand-img" />
+    </div>
+    <p id="erosText" class="erosText">에로스?</p>
+    <div class="cursor_item">
+      <img src="https://cur.cursors-4u.net/others/oth-8/oth702.cur" />
+    </div>
+    <video id="heVideo">
+      <source src="he.mp4" type="video/mp4" />
+    </video>
+
+    <p id="errosMessage" class="one">
+      누가 봐도 에로스임을 알 수 있는 그 날개 달린 신의 자태는 너무도
+      매혹적이었고, 당신은 단검을 든 채로 신랑의 미모를 감상하다 실수로 등잔의
+      기름 한 방울을 그의 어깨에 떨어뜨리고 말았다.
+    </p>
+
+    <p class="two">
+      어리석은 프시케, 난 당신을 위해 어머니 아프로디테의 지시도 어겼어.
+      어머니는 당신을 세상에서 가장 볼품없는 인간과 사랑에 빠지게 하라고 하셨지.
+      하지만 난 당신을 보는 순간 사랑에 빠져 내 화살로 내 자신에게 상처를 입혀
+      당신을 아내로 삼았는데 당신은 나를 의심하여 괴물로 생각하고 내 목을 자르려
+      하다니... 사랑이 어찌 의심과 함께할 수 있겠어.
+    </p>
+
+    <audio id="audioPlayer" src="find.mp3"></audio>
+
+    <script type="text/javascript">
+      let isFirstClick = true;
+
+      document.addEventListener("click", function () {
+        if (isFirstClick) {
+          let name = prompt("에로스의 얼굴이 궁금해?", "yes");
+          const audioPlayer = document.getElementById("audioPlayer");
+          audioPlayer.play();
+          isFirstClick = false;
+          hideTitle();
+          hideFirstVideo();
+          showNewScreen();
+        }
+      });
+      let isNewScreen = false;
+      const video = document.getElementById("myVideo");
+      const newScreen = document.getElementById("newScreen");
+      const overlay = document.getElementById("overlay");
+      const heVideo = document.getElementById("heVideo");
+      const message = document.getElementById("message");
+      const errosMessage = document.getElementById("errosMessage");
+      const twoMessage = document.querySelector(".two");
+      const erosText = document.getElementById("erosText");
+      const cursorItem = document.querySelector(".cursor_item");
+      let clickCount = 0;
+      
+      window.onload = function () {
+        document.addEventListener("mousemove", function (event) {
+          cursorItem.style.left = `${event.clientX}px`;
+          cursorItem.style.top = `${event.clientY}px`;
+          if (isNewScreen && checkErosPos(event)) {
+            erosText.style.left = `${event.clientX}px`;
+            erosText.style.top = `${event.clientY}px`;
+            erosText.style.display = "block";
+            cursorItem.style.display = "none";
+          } else {
+            cursorItem.style.display = "block";
+            erosText.style.display = "none";
+          }
+          
+        });
+      };
+
+      function hideTitle() {
+        message.style.display = "none";
+      }
+
+      function hideFirstVideo() {
+        video.style.display = "none";
+      }
+      function checkErosPos(event) {
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+
+        
+        const xPosStart = screenWidth * 0.5; 
+        const xPosEnd = screenWidth * 0.6; 
+        const yPosStart = screenHeight * 0.7; 
+        const yPosEnd = screenHeight * 0.8; 
+
+        if (
+          event.clientX > xPosStart &&
+          event.clientX < xPosEnd &&
+          event.clientY > yPosStart &&
+          event.clientY < yPosEnd
+        ) {
+          return true;
+        }
+        return false;
+      }
+
+      function showNewScreen() {
+        isNewScreen = true;
+        newScreen.style.display = "block";
+        document.addEventListener("mousemove", handleMouseMove); 
+        newScreen.addEventListener("click", (event) => {
+          if (checkErosPos(event)) {
+            newScreen.style.display = "none";
+            overlay.style.display = "none"; 
+            changeVideo();
+            isNewScreen = false;
+          }
+        });
+      }
+
+      function handleMouseMove(event) {
+        overlay.style.clipPath = `circle(80px at ${event.clientX}px ${event.clientY}px)`; 
+      }
+
+      function changeVideo() {
+        if (clickCount === 0) {
+          video.src = "on.mp4";
+          video.style.display = "block"; 
+          video.play(); 
+          message.style.display = "none";
+          errosMessage.style.display = "block"; 
+          clickCount++;
+
+          
+          setTimeout(() => {
+            heVideo.style.display = "block"; 
+            heVideo.play();
+            errosMessage.style.display = "none";
+          }, 5000);
+        } else if (clickCount === 1) {
+          let response = prompt("정말 에로스의 얼굴이 궁금해?", "yes");
+          if (response) {
+            console.log(response);
+          }
+          heVideo.style.display = "block";
+          heVideo.play();
+          errosMessage.style.display = "none";
+          clickCount++;
+        }
+      }
+
+   heVideo.addEventListener("ended", function () {
+  heVideo.style.display = "none"; 
+  document.body.style.backgroundColor = "black";
+  video.style.display = "none";
+  
+  
+  setTimeout(() => {
+    let userResponse = prompt("프시케, 에로스의 얼굴이 어땠는 지 알려줘.", "yes");
+    if (userResponse.toLowerCase() === "yes") {
+      window.location.href = "https://eun28.github.io/Faith/"; 
+    }
+  }, 500); 
+});
+      
+    </script>
+  </body>
+</html>
