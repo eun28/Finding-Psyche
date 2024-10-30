@@ -198,7 +198,7 @@
 
     <audio id="audioPlayer" src="find.mp3"></audio>
 
-    <script type="text/javascript">
+   <script type="text/javascript">
       let isFirstClick = true;
 
       document.addEventListener("click", function () {
@@ -221,6 +221,7 @@
       const errosMessage = document.getElementById("errosMessage");
       const twoMessage = document.querySelector(".two");
       const erosText = document.getElementById("erosText");
+      const psycheText = document.getElementById("psycheText");
       const cursorItem = document.querySelector(".cursor_item");
       let clickCount = 0;
       
@@ -233,10 +234,13 @@
             erosText.style.top = `${event.clientY}px`;
             erosText.style.display = "block";
             cursorItem.style.display = "none";
-          } else {
+            psycheText.style.display = "block"; // isNewScreen일 때 psycheText 보이게 설정
+    }else {
             cursorItem.style.display = "block";
             erosText.style.display = "none";
-          }
+          
+    }
+          
           
         });
       };
@@ -272,6 +276,7 @@
       function showNewScreen() {
         isNewScreen = true;
         newScreen.style.display = "block";
+        psycheText.style.display = "block";
         document.addEventListener("mousemove", handleMouseMove); 
         newScreen.addEventListener("click", (event) => {
           if (checkErosPos(event)) {
@@ -279,7 +284,7 @@
             overlay.style.display = "none"; 
             changeVideo();
             isNewScreen = false;
-          }
+    }
         });
       }
 
@@ -294,6 +299,7 @@
           video.play(); 
           message.style.display = "none";
           errosMessage.style.display = "block"; 
+          psycheText.style.display = "none";
           clickCount++;
 
           
